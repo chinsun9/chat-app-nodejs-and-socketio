@@ -17,4 +17,4 @@ ENV HOST=0.0.0.0 PORT=5500
 EXPOSE ${PORT}
 
 #서버 실행
-CMD ["node", "server"]
+CMD ["npm", "start"]
