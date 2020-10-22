@@ -1,4 +1,3 @@
-const socket = io();
 const messagecontainer = document.getElementById('message-container');
 const messageForm = document.getElementById('send-container');
 const messgaeInput = document.getElementById('message-input');
@@ -26,6 +25,8 @@ while (true) {
     break;
   }
 }
+const socket = io();
+
 appendMessage({ message: `${user_name} joined` }, 'info');
 socket.emit('new-user', user_name);
 
@@ -171,7 +172,7 @@ input_text.addEventListener(
   'input',
   function () {
     // event handling code for sane browsers
-    console.log(input_text.value);
+    // console.log(input_text.value);
     chkvalue(input_text.value.trim());
   },
   false
