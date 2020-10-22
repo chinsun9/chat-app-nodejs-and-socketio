@@ -3,16 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Chat app</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/442fa0184e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="default.css" />
+
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script defer src="script.js"></script>
   </head>
   <body>
-    <div id="message-container"></div>
+    <div class="container">
+      <div class="chat">
+        <div id="message-container">
+          <!-- <div class="other">
+            <div class="profileimg">H</div>
+            <div class="namentime">
+              <div class="uname">hello wolrd</div>
+              <div class="msg">z</div>
+              <div class="time">오후 2:25</div>
+            </div>
+          </div> -->
 
-    <form id="send-container">
-      <input type="text" id="message-input" />
-      <button type="submit" id="send-button">Send</button>
-    </form>
+          <!-- <div class="me">
+            <div class="msg">z</div>
+            <div class="time">오후 2:25</div>
+          </div> -->
+        </div>
+
+        <form id="send-container">
+          <input type="text" required id="message-input" class="form-control" />
+          <button type="submit" id="send-button" class="btn btn-warning">
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

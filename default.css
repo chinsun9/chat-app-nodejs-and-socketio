@@ -1,0 +1,140 @@
+html {
+  min-width: 400px;
+}
+body {
+  background-color: aliceblue;
+}
+
+.container {
+  height: 100vh;
+  padding: 20px;
+}
+
+.chat {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  background-color: white;
+
+  border: 1px solid #dee2e6;
+  border-radius: 1em;
+}
+
+#message-container {
+  width: 100%;
+  min-height: 100px;
+  flex-basis: 90%;
+
+  background-color: rgb(178, 199, 217);
+
+  border-radius: 1em 1em 0 0;
+
+  overflow: auto;
+
+  text-align: -webkit-center;
+}
+
+#message-container > div {
+  display: table;
+  word-break: break-all;
+
+  max-width: 250px;
+  margin: 10px;
+
+  text-align: left;
+  word-wrap: break-word;
+}
+
+#message-container > div.me {
+  margin-left: auto;
+  background-color: rgb(255, 235, 51);
+  border: 1px solid #dee2e6;
+}
+#message-container > div.other {
+  margin-right: auto;
+
+  position: relative;
+}
+
+.other .namentime {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  padding: 5px;
+
+  left: 60px;
+  position: relative;
+}
+
+#message-container div.info {
+  background-color: rgba(255, 255, 255, 0.671);
+  color: gray;
+  font-size: 9px;
+
+  border-radius: 3px;
+  padding: 5px;
+
+  text-align: center;
+}
+
+.other .profileimg {
+  border-radius: 1em;
+
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: -webkit-center;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  font-size: xx-large;
+}
+
+.other .time {
+  font-size: 0.2em;
+
+  right: -30px;
+  bottom: 0px;
+  position: absolute;
+}
+
+.me {
+  background-color: rgb(255, 235, 51);
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  padding: 5px;
+
+  position: relative;
+}
+
+.me .time {
+  font-size: 0.2em;
+  left: -30px;
+  bottom: 0px;
+  position: absolute;
+}
+
+.other .uname {
+  font-weight: bold;
+}
+
+#send-container {
+  width: 100%;
+  min-height: 100px;
+  flex-basis: 10%;
+  padding: 10px;
+  display: flex;
+}
+
+#send-container input,
+#send-container button {
+  height: 100%;
+}
+
+#send-container input {
+  flex-basis: 90%;
+}
+#send-container button {
+  flex-basis: 10%;
+}
