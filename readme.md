@@ -58,8 +58,19 @@ const socket = io();
 
 ## 발생한 문제들..
 
+### ???
+
 - script가 로딩되지 않는 오류..
 - 그냥 다시 처음부터 하니 없어졌다.
+
+### socket io client 자동 reconnect
+
+```
+delete users[socket.id];
+```
+
+- 디스커넥트하면 서버에서 해당 유저를 users 객체해서 삭제하는 로직이 있었다.
+- 근데 클라이언트에서 다시 접속했을때 리커넥션이 되어서 통신이 되었다.
 
 ## Docker 올리기
 
