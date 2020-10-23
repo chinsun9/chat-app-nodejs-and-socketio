@@ -44,8 +44,11 @@ const users = {};
 io.on('connection', (socket) => {
   socket.on('new-user', (name) => {
     users[socket.id] = name;
+
+    const address = socket.handshake.address;
+
     socket.broadcast.emit('user-connected', name);
-    console.log(`${new Date()}] ${name} connected`);
+    console.log(`${new Date()}] ${address} ${name} connected`);
   });
 
   socket.on('send-chat-message', (message) => {
@@ -67,7 +70,6 @@ io.on('connection', (socket) => {
     users[socket.id] &&
       socket.broadcast.emit('user-disconnected', users[socket.id]);
     console.log(`${new Date()}] ${users[socket.id]} disconnected`);
-    delete users[socket.id];
   });
 
   socket.on('ping', () => {
