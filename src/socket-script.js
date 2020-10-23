@@ -227,12 +227,12 @@ export default function () {
     }
   }
 
-  function setVisibilityTime(last_message, time) {
+  function setVisibilityTime(parentElement, time) {
     let time_element;
 
-    for (var i = 0; i < last_message.childNodes.length; i++) {
-      if (last_message.childNodes[i].className == 'time') {
-        time_element = last_message.childNodes[i];
+    for (var i = 0; i < parentElement.childNodes.length; i++) {
+      if (parentElement.childNodes[i].className == 'time') {
+        time_element = parentElement.childNodes[i];
         break;
       }
     }
