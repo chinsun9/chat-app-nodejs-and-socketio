@@ -7,6 +7,8 @@ export default function () {
   let last_other_color;
   let last_message;
 
+  let isReading = false;
+
   while (true) {
     try {
       user_name = prompt('What is your name?').trim();
@@ -116,7 +118,8 @@ export default function () {
 
         const uname = document.createElement('div');
         uname.className = 'uname';
-        uname.innerHTML = name;
+
+        uname.appendChild(document.createTextNode(name));
 
         msg = document.createElement('div');
         msg.className = 'msg';
@@ -155,10 +158,10 @@ export default function () {
     }
 
     messagecontainer.append(messageElement);
-    messagecontainer.scrollBy({
-      top: messagecontainer.scrollHeight,
-      behavior: 'smooth',
-    });
+    // messagecontainer.scrollBy({
+    //   top: messagecontainer.scrollHeight,
+    //   behavior: 'smooth',
+    // });
   }
 
   messgaeInput.addEventListener(
@@ -268,7 +271,7 @@ export default function () {
 
             const new_li_element = document.createElement('li');
             new_li_element.className = 'list-group-item';
-            new_li_element.innerHTML = element;
+            new_li_element.appendChild(document.createTextNode(element));
             newListbox.appendChild(new_li_element);
           }
         }
@@ -284,4 +287,10 @@ export default function () {
   }
 
   init();
+
+  // 스크롤 이벤트
+
+  messagecontainer.addEventListener('scroll', function (e) {
+    console.log(e.scrollY);
+  });
 }
