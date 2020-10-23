@@ -24,6 +24,7 @@ while (true) {
     user_name = prompt('What is your name?').trim();
 
     if (user_name.length != 0) {
+      user_name = user_name.substring(0, 10);
       break;
     }
   } catch (error) {
