@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
+    "dev": "nodemon server",
     "start": "node server",
     "start3": "set PORT=3000&&node server"
   },

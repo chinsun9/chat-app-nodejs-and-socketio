@@ -30,7 +30,10 @@ while (true) {
     console.log(`이름을 작성해주세요`);
   }
 }
+
 let socket = io();
+socket.emit('new-user', user_name);
+appendMessage({ message: `${user_name} joined` }, 'info');
 
 let ping_loop = setInterval(() => {
   if (socket.disconnected) {
@@ -40,9 +43,6 @@ let ping_loop = setInterval(() => {
 
   socket.emit('ping');
 }, 1000);
-
-appendMessage({ message: `${user_name} joined` }, 'info');
-socket.emit('new-user', user_name);
 
 socket.on('chat-message', (data) => {
   appendMessage(data, 'other');
@@ -89,17 +89,13 @@ messageForm.addEventListener('submit', (e) => {
 });
 
 function appendMessage(data, type = 'me') {
-  if (socket.disconnected) {
-    disconnecting();
-    return;
-  }
-
   let { message, name } = data;
   if (!name) {
     name = 'unknown';
   }
   const messageElement = document.createElement('div');
   let msg, time;
+  let textNode = document.createTextNode(message);
 
   switch (type) {
     case 'me':
@@ -107,7 +103,7 @@ function appendMessage(data, type = 'me') {
 
       msg = document.createElement('div');
       msg.className = 'msg';
-      msg.innerHTML = message;
+      msg.appendChild(textNode);
 
       time = document.createElement('div');
       time.className = 'time';
@@ -137,7 +133,7 @@ function appendMessage(data, type = 'me') {
 
       msg = document.createElement('div');
       msg.className = 'msg';
-      msg.innerHTML = message;
+      msg.appendChild(textNode);
 
       time = document.createElement('div');
       time.className = 'time';
@@ -156,7 +152,7 @@ function appendMessage(data, type = 'me') {
 
     default:
       messageElement.className = type;
-      messageElement.innerHTML = message;
+      messageElement.appendChild(textNode);
 
       break;
   }
@@ -170,7 +166,7 @@ function appendMessage(data, type = 'me') {
 messgaeInput.addEventListener(
   'input',
   function () {
-    chkvalue(input_text.value.trim());
+    chkvalue(messgaeInput.value.trim());
   },
   false
 );
