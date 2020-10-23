@@ -1,5 +1,5 @@
 html {
-  min-width: 400px;
+  min-width: 350px;
 }
 body {
   background-color: aliceblue;
@@ -158,4 +158,12 @@ body {
 /* Handle on hover */
 #message-container::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* 프사 없애기 */
+
+@media (max-width: 400px) {
+  .other .namentime {
+    left: 0;
+  }
 }
