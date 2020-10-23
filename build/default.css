@@ -166,4 +166,8 @@ body {
   .other .namentime {
     left: 0;
   }
+
+  .other .profileimg {
+    display: none;
+  }
 }
