@@ -19,6 +19,11 @@ app.use(express.static(path.join(__dirname, '../build')));
 app.get('/ping', (req, res) => {
   return res.send('pong');
 });
+
+app.get('/users', (req, res) => {
+  return res.json(users);
+});
+
 app.get('/', (req, res) => {
   return res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
