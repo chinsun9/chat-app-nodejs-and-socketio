@@ -39,6 +39,31 @@ function normalizePort(val) {
 
 ////////
 
+Object.defineProperty(String.prototype, 'hashCode', {
+  value: function () {
+    var hash = 0,
+      i,
+      chr;
+    for (i = 0; i < this.length; i++) {
+      chr = this.charCodeAt(i);
+      hash = (hash << 5) - hash + chr;
+      hash |= 0;
+    }
+    return hash;
+  },
+});
+
+function getColorByString(str) {
+  const stringhash = `0.` + Math.abs(String(str).hashCode());
+
+  var bg_colour = Math.floor(Number(stringhash) * 16777215).toString(16);
+  bg_colour = '#' + ('000000' + bg_colour).slice(-6);
+
+  return bg_colour;
+}
+
+////////////////
+
 const users = {};
 
 io.on('connection', (socket) => {
@@ -56,6 +81,7 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('chat-message', {
       message: message,
       name: users[socket.id],
+      color: getColorByString(socket.id),
     });
   });
 

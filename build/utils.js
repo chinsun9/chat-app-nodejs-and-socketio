@@ -1,3 +1,17 @@
+Object.defineProperty(String.prototype, 'hashCode', {
+  value: function () {
+    var hash = 0,
+      i,
+      chr;
+    for (i = 0; i < this.length; i++) {
+      chr = this.charCodeAt(i);
+      hash = (hash << 5) - hash + chr;
+      hash |= 0;
+    }
+    return hash;
+  },
+});
+
 function getChatTime() {
   var today = new Date();
   var h = today.getHours();
@@ -44,7 +58,6 @@ function setVisibilityTime(last_message, time) {
   let time_element;
 
   for (var i = 0; i < last_message.childNodes.length; i++) {
-    console.log(last_message.childNodes[i]);
     if (last_message.childNodes[i].className == 'time') {
       time_element = last_message.childNodes[i];
       break;

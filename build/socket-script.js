@@ -2,22 +2,8 @@ const messagecontainer = document.getElementById('message-container');
 const messageForm = document.getElementById('send-container');
 const messgaeInput = document.getElementById('message-input');
 
-Object.defineProperty(String.prototype, 'hashCode', {
-  value: function () {
-    var hash = 0,
-      i,
-      chr;
-    for (i = 0; i < this.length; i++) {
-      chr = this.charCodeAt(i);
-      hash = (hash << 5) - hash + chr;
-      hash |= 0;
-    }
-    return hash;
-  },
-});
-
 let user_name;
-let last_other_name;
+let last_other_color;
 let last_message;
 
 while (true) {
@@ -86,7 +72,7 @@ messageForm.addEventListener('submit', (e) => {
 });
 
 function appendMessage(data, type = 'me') {
-  let { message, name } = data;
+  let { message, name, color } = data;
   if (!name) {
     name = 'unknown';
   }
@@ -113,7 +99,7 @@ function appendMessage(data, type = 'me') {
         setVisibilityTime(last_message, time);
       }
 
-      last_other_name = '';
+      last_other_color = '';
       last_message = messageElement;
       break;
     case 'other':
@@ -121,10 +107,8 @@ function appendMessage(data, type = 'me') {
       const profileimg = document.createElement('div');
       profileimg.className = 'profileimg';
       profileimg.innerHTML = name[0].toUpperCase();
-      profileimg.style.backgroundColor = getColorByName(name);
-      profileimg.style.color = getColorByBgColor(
-        profileimg.style.backgroundColor
-      );
+      profileimg.style.backgroundColor = color;
+      profileimg.style.color = getColorByBgColor(color);
 
       const namentime = document.createElement('div');
       namentime.className = 'namentime';
@@ -141,11 +125,10 @@ function appendMessage(data, type = 'me') {
       time.className = 'time';
       time.innerHTML = getChatTime();
 
-      if (last_other_name != name) {
+      if (last_other_color != color) {
         messageElement.appendChild(profileimg);
         namentime.appendChild(uname);
       } else {
-        console.log(123);
         setVisibilityTime(last_message, time);
       }
 
@@ -153,7 +136,7 @@ function appendMessage(data, type = 'me') {
       namentime.appendChild(time);
 
       messageElement.appendChild(namentime);
-      last_other_name = name;
+      last_other_color = color;
 
       last_message = namentime;
       break;
@@ -161,7 +144,7 @@ function appendMessage(data, type = 'me') {
     default:
       messageElement.className = type;
       messageElement.appendChild(textNode);
-      last_other_name = '';
+      last_other_color = '';
 
       break;
   }
