@@ -64,15 +64,16 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    socket.broadcast.emit('user-disconnectd', users[socket.id]);
-    console.log(`${new Date()}] ${users[socket.id]} disconnectd`);
+    users[socket.id] &&
+      socket.broadcast.emit('user-disconnected', users[socket.id]);
+    console.log(`${new Date()}] ${users[socket.id]} disconnected`);
     delete users[socket.id];
   });
 
   socket.on('ping', () => {
     if (!users[socket.id]) {
       io.sockets.connected[socket.id].emit('bye');
-      io.sockets.connected[socket.id].disconnect();
+      io.sockets.connected[socket.id].disconnect(true);
     }
   });
 });
