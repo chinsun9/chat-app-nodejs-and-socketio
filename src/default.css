@@ -64,7 +64,6 @@ body {
 .other .namentime {
   background-color: #fff;
   border: 1px solid #dee2e6;
-  border-radius: 3px;
   padding: 5px;
 
   left: 60px;
@@ -103,10 +102,14 @@ body {
   position: absolute;
 }
 
+.me,
+.other .namentime {
+  border-radius: 5px;
+}
+
 .me {
   background-color: rgb(255, 235, 51);
   border: 1px solid #dee2e6;
-  border-radius: 3px;
   padding: 5px;
 
   position: relative;
