@@ -32,18 +32,11 @@ while (true) {
   }
 }
 
-let socket = io();
+const socket = io({
+  reconnection: false,
+});
 socket.emit('new-user', user_name);
 appendMessage({ message: `${user_name} joined` }, 'info');
-
-let ping_loop = setInterval(() => {
-  if (socket.disconnected) {
-    clearInterval(ping_loop);
-    return;
-  }
-
-  socket.emit('ping');
-}, 1000);
 
 socket.on('chat-message', (data) => {
   appendMessage(data, 'other');
@@ -53,8 +46,12 @@ socket.on('user-connected', (uname) => {
   appendMessage({ message: `${uname} connected` }, 'info');
 });
 
-socket.on('user-disconnectd', (uname) => {
+socket.on('user-disconnected', (uname) => {
   appendMessage({ message: `${uname} disconnected` }, 'info');
+});
+
+socket.on('disconnect', () => {
+  disconnecting();
 });
 
 socket.on('bye', () => {
@@ -62,8 +59,6 @@ socket.on('bye', () => {
 });
 
 function disconnecting() {
-  socket.disconnect();
-  clearInterval(ping_loop);
   appendMessage({ message: `disconnected` }, 'info');
 
   // message_form disabled

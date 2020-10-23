@@ -67,9 +67,12 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    users[socket.id] &&
-      socket.broadcast.emit('user-disconnected', users[socket.id]);
+    socket.broadcast.emit('user-disconnected', users[socket.id]);
     console.log(`${new Date()}] ${users[socket.id]} disconnected`);
+    delete users[socket.id];
+
+    console.log(`current users : `);
+    console.log(users);
   });
 
   socket.on('ping', () => {
