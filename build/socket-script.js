@@ -149,6 +149,7 @@ function appendMessage(data, type = 'me') {
     default:
       messageElement.className = type;
       messageElement.appendChild(textNode);
+      last_other_name = '';
 
       break;
   }
