@@ -40,6 +40,22 @@ function chkvalue(text) {
   }
 }
 
+function setVisibilityTime(last_message, time) {
+  let time_element;
+
+  for (var i = 0; i < last_message.childNodes.length; i++) {
+    console.log(last_message.childNodes[i]);
+    if (last_message.childNodes[i].className == 'time') {
+      time_element = last_message.childNodes[i];
+      break;
+    }
+  }
+
+  if (time_element?.innerHTML == time.innerHTML) {
+    time_element.style.display = 'none';
+  }
+}
+
 function init() {
   document.querySelector('#send-button').style.color = '#9e9e9e';
 }

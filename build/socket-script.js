@@ -18,6 +18,7 @@ Object.defineProperty(String.prototype, 'hashCode', {
 
 let user_name;
 let last_other_name;
+let last_message;
 
 while (true) {
   try {
@@ -107,8 +108,13 @@ function appendMessage(data, type = 'me') {
 
       messageElement.appendChild(msg);
       messageElement.appendChild(time);
-      last_other_name = '';
 
+      if (last_message?.className == 'me') {
+        setVisibilityTime(last_message, time);
+      }
+
+      last_other_name = '';
+      last_message = messageElement;
       break;
     case 'other':
       messageElement.className = type;
@@ -138,12 +144,18 @@ function appendMessage(data, type = 'me') {
       if (last_other_name != name) {
         messageElement.appendChild(profileimg);
         namentime.appendChild(uname);
+      } else {
+        console.log(123);
+        setVisibilityTime(last_message, time);
       }
+
       namentime.appendChild(msg);
       namentime.appendChild(time);
 
       messageElement.appendChild(namentime);
       last_other_name = name;
+
+      last_message = namentime;
       break;
 
     default:
