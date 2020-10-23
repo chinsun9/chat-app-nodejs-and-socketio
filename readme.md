@@ -80,12 +80,14 @@ CMD ["npm", "start"]
 
 - Dockerfile 생성
 
-```
+```cmd
+sudo service docker start
+
 docker build . -t chat-app-nodejs-and-socketio
 
 docker run -itd -p 5500:5500 chat-app-nodejs-and-socketio
 ```
-
+- 도커 실행
 - 이미지 생성 및 실행 명령
 
 ## 발생한 문제들..

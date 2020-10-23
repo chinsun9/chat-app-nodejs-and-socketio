@@ -12,9 +12,14 @@ ADD ./ /app
 # 패키지 파일 설치.
 RUN npm install
 
+# parcel
+RUn npm run build
+
 
 ENV HOST=0.0.0.0 PORT=5500
 EXPOSE ${PORT}
+
+
 
 #서버 실행
 CMD ["npm", "start"]
