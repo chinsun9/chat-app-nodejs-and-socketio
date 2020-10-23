@@ -154,9 +154,10 @@ function appendMessage(data, type = 'me') {
   }
 
   messagecontainer.append(messageElement);
-  document
-    .querySelector('#message-container')
-    .scrollTo(0, document.querySelector('#message-container').scrollHeight);
+  messagecontainer.scrollBy({
+    top: messagecontainer.scrollHeight,
+    behavior: 'smooth',
+  });
 }
 
 messgaeInput.addEventListener(
