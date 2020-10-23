@@ -8,13 +8,17 @@ body {
 .container {
   height: 100vh;
   padding: 20px;
+
+  text-align: -webkit-center;
 }
 
 .chat {
+  position: relative;
+
   height: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 500px;
   background-color: white;
 
   border: 1px solid #dee2e6;
@@ -39,7 +43,7 @@ body {
   display: table;
   word-break: break-all;
 
-  max-width: 250px;
+  max-width: 60%;
   margin: 10px;
 
   text-align: left;
@@ -170,4 +174,24 @@ body {
   .other .profileimg {
     display: none;
   }
+}
+
+/* user_list */
+
+#user-list {
+  width: 200px;
+
+  position: absolute;
+  left: -210px;
+}
+
+#user-list .list-group-item {
+  padding: 1px;
+}
+
+#user-list .list-group-item.head {
+  padding: 3px;
+  color: gray;
+  background-color: rgb(230 237 242);
+  font-weight: bold;
 }
