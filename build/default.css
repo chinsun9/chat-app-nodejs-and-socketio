@@ -138,3 +138,24 @@ body {
 #send-container button {
   flex-basis: 10%;
 }
+
+/* scroll bar */
+
+#message-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#message-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+#message-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+#message-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
