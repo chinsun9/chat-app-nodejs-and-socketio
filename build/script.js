@@ -25,7 +25,11 @@ while (true) {
     break;
   }
 }
-const socket = io();
+let socket = io();
+
+let ping_loop = setInterval(() => {
+  socket.emit('ping');
+}, 1000);
 
 appendMessage({ message: `${user_name} joined` }, 'info');
 socket.emit('new-user', user_name);
@@ -39,8 +43,23 @@ socket.on('user-connected', (uname) => {
 });
 
 socket.on('user-disconnectd', (uname) => {
-  appendMessage({ message: `${uname} disconnectd` }, 'info');
+  appendMessage({ message: `${uname} disconnected` }, 'info');
 });
+
+socket.on('bye', () => {
+  disconnecting();
+});
+
+function disconnecting() {
+  socket = null;
+  clearInterval(ping_loop);
+  appendMessage({ message: `disconnected` }, 'info');
+
+  // message_form disabled
+  messgaeInput.value = '';
+  messgaeInput.disabled = true;
+  document.querySelector('#send-button').disabled = true;
+}
 
 messageForm.addEventListener('submit', (e) => {
   e.preventDefault();

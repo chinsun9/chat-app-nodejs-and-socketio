@@ -49,6 +49,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('send-chat-message', (message) => {
+    // 연결이 끊겼다면..
+    if (!users[socket.id]) {
+      io.sockets.connected[socket.id].emit('bye');
+      io.sockets.connected[socket.id].disconnect();
+      return;
+    }
+
     console.log(`${new Date()}] ${users[socket.id]}; ${message}`);
     socket.broadcast.emit('chat-message', {
       message: message,
@@ -60,5 +67,12 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('user-disconnectd', users[socket.id]);
     console.log(`${new Date()}] ${users[socket.id]} disconnectd`);
     delete users[socket.id];
+  });
+
+  socket.on('ping', () => {
+    if (!users[socket.id]) {
+      io.sockets.connected[socket.id].emit('bye');
+      io.sockets.connected[socket.id].disconnect();
+    }
   });
 });
