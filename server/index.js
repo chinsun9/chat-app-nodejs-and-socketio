@@ -21,7 +21,7 @@ app.get('/ping', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-  return res.json(users);
+  return res.json(JSON.stringify(users));
 });
 
 app.get('/', (req, res) => {

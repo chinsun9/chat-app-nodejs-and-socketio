@@ -195,3 +195,9 @@ body {
   background-color: rgb(230 237 242);
   font-weight: bold;
 }
+
+@media (max-width: 927px) {
+  #user-list {
+    display: none;
+  }
+}

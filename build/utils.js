@@ -12,6 +12,9 @@ Object.defineProperty(String.prototype, 'hashCode', {
   },
 });
 
+const listbox = document.querySelector('#user-list > ul');
+const listboxwrapper = document.querySelector('#user-list');
+
 function getChatTime() {
   var today = new Date();
   var h = today.getHours();
@@ -67,6 +70,43 @@ function setVisibilityTime(last_message, time) {
   if (time_element?.innerHTML == time.innerHTML) {
     time_element.style.display = 'none';
   }
+}
+
+function getUserList() {
+  //   listbox 초기화
+  let newListbox = document.createElement('li');
+  newListbox.innerHTML = `<li class="list-group-item head">User List</li>`;
+
+  const url = '/users';
+  const fetchResponsePromise = fetch(url);
+  fetchResponsePromise
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error('Something went wrong on api server!');
+      }
+    })
+    .then((response) => {
+      console.log(`fetch`, response);
+      response = JSON.parse(response);
+      let i = 0;
+      for (const key in response) {
+        i++;
+        if (response.hasOwnProperty(key)) {
+          const element = response[key];
+
+          const new_li_element = document.createElement('li');
+          new_li_element.className = 'list-group-item';
+          new_li_element.innerHTML = element;
+          newListbox.appendChild(new_li_element);
+        }
+      }
+      listbox.innerHTML = newListbox.innerHTML;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function init() {

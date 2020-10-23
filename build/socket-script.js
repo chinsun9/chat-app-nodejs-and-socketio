@@ -146,6 +146,10 @@ function appendMessage(data, type = 'me') {
       messageElement.appendChild(textNode);
       last_other_color = '';
 
+      setTimeout(() => {
+        getUserList();
+      }, 300);
+
       break;
   }
 
