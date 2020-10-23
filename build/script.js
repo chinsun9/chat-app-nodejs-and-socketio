@@ -20,14 +20,24 @@ let user_name;
 let last_other_name;
 
 while (true) {
-  user_name = prompt('What is your name?').trim();
-  if (user_name.length != 0) {
-    break;
+  try {
+    user_name = prompt('What is your name?').trim();
+
+    if (user_name.length != 0) {
+      break;
+    }
+  } catch (error) {
+    console.log(`이름을 작성해주세요`);
   }
 }
 let socket = io();
 
 let ping_loop = setInterval(() => {
+  if (socket.disconnected) {
+    clearInterval(ping_loop);
+    return;
+  }
+
   socket.emit('ping');
 }, 1000);
 
@@ -51,7 +61,7 @@ socket.on('bye', () => {
 });
 
 function disconnecting() {
-  socket = null;
+  socket.disconnect();
   clearInterval(ping_loop);
   appendMessage({ message: `disconnected` }, 'info');
 
