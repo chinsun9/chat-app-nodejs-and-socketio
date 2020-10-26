@@ -158,10 +158,13 @@ export default function () {
     }
 
     messagecontainer.append(messageElement);
-    // messagecontainer.scrollBy({
-    //   top: messagecontainer.scrollHeight,
-    //   behavior: 'smooth',
-    // });
+
+    if (!isReading) {
+      messagecontainer.scrollBy({
+        top: messagecontainer.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   }
 
   messgaeInput.addEventListener(
@@ -288,9 +291,16 @@ export default function () {
 
   init();
 
-  // 스크롤 이벤트
-
+  // 스크롤 위치에 따라 isReading 값 토글
   messagecontainer.addEventListener('scroll', function (e) {
-    console.log(e.scrollY);
+    const { offsetHeight, scrollTop, scrollHeight } = e.target;
+    // console.info(offsetHeight + scrollTop, scrollHeight);
+    if (!isReading && scrollHeight - (offsetHeight + scrollTop) >= 60) {
+      isReading = true;
+      // console.info(isReading);
+    } else if (isReading && scrollHeight - (offsetHeight + scrollTop) < 60) {
+      isReading = false;
+      // console.info(isReading);
+    }
   });
 }
