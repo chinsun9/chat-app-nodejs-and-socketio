@@ -8,12 +8,6 @@ const path = require('path');
 
 const port = normalizePort(process.env.PORT || 5500);
 
-http.listen(port, () => {
-  console.log(`Server is listening on port http://localhost:${port}.`);
-});
-
-app.use(express.static(path.join(__dirname, '../dist')));
-
 app.get('/ping', (req, res) => {
   return res.send('pong');
 });
@@ -23,8 +17,12 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/', (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log(ip);
   return res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+
+app.use(express.static(path.join(__dirname, '../dist')));
 
 function normalizePort(val) {
   const port_int = parseInt(val, 10);
@@ -39,6 +37,10 @@ function normalizePort(val) {
 
   return false;
 }
+
+http.listen(port, '0.0.0.0', () => {
+  console.log(`Server is listening on port http://localhost:${port}.`);
+});
 
 ////////
 
