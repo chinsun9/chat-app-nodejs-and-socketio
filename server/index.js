@@ -13,7 +13,7 @@ app.get('/ping', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-  return res.json(JSON.stringify(users));
+  return res.json(users);
 });
 
 app.get('/', (req, res) => {

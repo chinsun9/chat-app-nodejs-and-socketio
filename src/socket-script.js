@@ -265,7 +265,6 @@ export default function () {
       })
       .then((response) => {
         console.log(`fetch`, response);
-        response = JSON.parse(response);
         let i = 0;
         for (const key in response) {
           i++;
