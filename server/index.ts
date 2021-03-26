@@ -18,7 +18,7 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   console.log(ip);
   return res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
