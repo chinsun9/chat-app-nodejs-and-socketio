@@ -1,4 +1,4 @@
-FROM node:slim
+FROM node:14
 
 # app 폴더 생성.
 RUN mkdir -p /app
@@ -13,7 +13,7 @@ ADD ./ /app
 RUN npm install
 
 # parcel
-RUn npm run build
+RUN npm run build
 
 
 ENV HOST=0.0.0.0 PORT=5500
