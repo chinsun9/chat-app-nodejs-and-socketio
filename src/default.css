@@ -1,6 +1,7 @@
 html {
   min-width: 350px;
 }
+
 body {
   background-color: aliceblue;
 }
@@ -8,46 +9,37 @@ body {
 .container {
   height: 100vh;
   padding: 20px;
-
   text-align: -webkit-center;
 }
 
 .chat {
   position: relative;
-
-  height: 100%;
   display: flex;
   flex-direction: column;
   max-width: 500px;
+  height: 100%;
   background-color: white;
-
   border: 1px solid #dee2e6;
   border-radius: 1em;
 }
 
 #message-container {
+  flex-basis: 90%;
   width: 100%;
   min-height: 100px;
-  flex-basis: 90%;
-
-  background-color: rgb(178, 199, 217);
-
-  border-radius: 1em 1em 0 0;
-
   overflow: auto;
-
   text-align: -webkit-center;
+  background-color: rgb(178, 199, 217);
+  border-radius: 1em 1em 0 0;
 }
 
 #message-container > div {
   display: table;
-  word-break: break-all;
-
   max-width: 60%;
   margin: 10px;
-
   text-align: left;
   word-wrap: break-word;
+  word-break: break-all;
 }
 
 #message-container > div.me {
@@ -55,51 +47,46 @@ body {
   background-color: rgb(255, 235, 51);
   border: 1px solid #dee2e6;
 }
-#message-container > div.other {
-  margin-right: auto;
 
+#message-container > div.other {
   position: relative;
+  margin-right: auto;
 }
 
 .other .namentime {
+  position: relative;
+  left: 60px;
+  padding: 5px;
   background-color: #fff;
   border: 1px solid #dee2e6;
-  padding: 5px;
-
-  left: 60px;
-  position: relative;
 }
 
 #message-container div.info {
-  background-color: rgba(255, 255, 255, 0.671);
+  padding: 5px;
   color: gray;
   font-size: 9px;
-
-  border-radius: 3px;
-  padding: 5px;
-
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.671);
+  border-radius: 3px;
 }
 
 .other .profileimg {
-  border-radius: 1em;
-
   position: absolute;
-  width: 50px;
-  height: 50px;
-  text-align: -webkit-center;
   display: flex;
   align-items: center;
-  place-content: center;
+  width: 50px;
+  height: 50px;
   font-size: xx-large;
+  text-align: -webkit-center;
+  border-radius: 1em;
+  place-content: center;
 }
 
 .other .time {
-  font-size: 0.2em;
-
+  position: absolute;
   right: -30px;
   bottom: 0px;
-  position: absolute;
+  font-size: 0.2em;
 }
 
 .me,
@@ -108,18 +95,17 @@ body {
 }
 
 .me {
+  position: relative;
+  padding: 5px;
   background-color: rgb(255, 235, 51);
   border: 1px solid #dee2e6;
-  padding: 5px;
-
-  position: relative;
 }
 
 .me .time {
-  font-size: 0.2em;
-  left: -30px;
-  bottom: 0px;
   position: absolute;
+  bottom: 0px;
+  left: -30px;
+  font-size: 0.2em;
 }
 
 .other .uname {
@@ -127,11 +113,11 @@ body {
 }
 
 #send-container {
+  display: flex;
+  flex-basis: 10%;
   width: 100%;
   min-height: 100px;
-  flex-basis: 10%;
   padding: 10px;
-  display: flex;
 }
 
 #send-container input,
@@ -182,10 +168,9 @@ body {
 /* user_list */
 
 #user-list {
-  width: 200px;
-
   position: absolute;
   left: -210px;
+  width: 200px;
 }
 
 #user-list .list-group-item {
@@ -195,8 +180,8 @@ body {
 #user-list .list-group-item.head {
   padding: 3px;
   color: gray;
-  background-color: rgb(230 237 242);
   font-weight: bold;
+  background-color: rgb(230 237 242);
 }
 
 @media (max-width: 927px) {
