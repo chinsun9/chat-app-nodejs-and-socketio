@@ -2,23 +2,19 @@
   "name": "chat-app-nodejs-and-socketio",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "nodemon server",
     "start": "node server",
-    "start3": "set PORT=3000&&node server",
     "devp": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build --dist-dir dist src/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^4.1.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6",
-    "parcel-bundler": "^1.12.4"
+    "parcel": "^2.0.0-beta.3.1"
   }
 }
